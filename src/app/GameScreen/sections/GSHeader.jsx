@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { breakpoints, colors, transition } from '../../../shared/variables'
 import { Icon, Typography } from '../../../components'
 import Context from '../../../context'
-import startCase from 'lodash/startCase'
+import { startCase } from 'lodash'
 
 const StRoot = styled.div`
   display: flex;

@@ -1,7 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { breakpoints, colors } from '../../../shared/variables'
+import { useDrag } from 'react-dnd'
+import { breakpoints, colors, transition } from '../../../shared/variables'
+import { ItemTypes } from '../constants'
 
 import ImgZ from '../../../images/zoovu-z.svg'
 import ImgO from '../../../images/zoovu-o.svg'
@@ -22,6 +24,12 @@ const StCard = styled.div`
   position: relative;
   overflow: hidden;
   cursor: grab;
+  border: 1px solid transparent;
+  ${({ hasError }) => hasError && (`
+    border: 2px solid ${colors.error};
+  `)};
+  opacity: ${({ isDragging }) => isDragging ? 0 : 1};
+  ${transition('border-color', '0.5s')};
 
   @media ${breakpoints.sm} {
     border-radius: 16px;
@@ -58,20 +66,40 @@ const StImg = styled.img`
   }
 `
 
-const LogoCard = ({ variant, ...props }) => {
+const LogoCard = ({ variant, id, hasError, onBegin, source, ...props }) => {
+  const [{ isDragging }, drag] = useDrag({
+    item: { type: ItemTypes.CARD, id, variant, source },
+    begin: onBegin,
+    collect: monitor => ({
+      isDragging: monitor.isDragging()
+    })
+  })
+
   return (
-    <StCard data-variant={variant} {...props}>
+    <StCard
+      data-variant={variant}
+      ref={drag}
+      hasError={hasError}
+      isDragging={isDragging}
+      {...props}
+    >
       <StImg src={variantMapping[variant]} alt={variant} />
     </StCard>
   )
 }
 
 LogoCard.propTypes = {
-  variant: PropTypes.oneOf(['z', 'o', 'v', 'u'])
+  variant: PropTypes.oneOf(['z', 'o', 'v', 'u']),
+  id: PropTypes.string,
+  hasError: PropTypes.bool,
+  onBegin: PropTypes.func
 }
 
 LogoCard.defaultProps = {
-  variant: 'z'
+  variant: 'z',
+  id: undefined,
+  hasError: false,
+  onBegin: () => {}
 }
 
-export default LogoCard
+export default React.memo(LogoCard)

@@ -1,5 +1,7 @@
 import React from 'react'
 import { createGlobalStyle } from 'styled-components'
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
 import { ContextProvider } from './context'
 
 import { colors } from './shared/variables'
@@ -79,10 +81,12 @@ const GlobalStyle = createGlobalStyle`
 
 function App () {
   return (
-    <ContextProvider>
-      <GlobalStyle />
-      <ScreenHandler />
-    </ContextProvider>
+    <DndProvider backend={HTML5Backend}>
+      <ContextProvider>
+        <GlobalStyle />
+        <ScreenHandler />
+      </ContextProvider>
+    </DndProvider>
   )
 }
 

@@ -13,6 +13,7 @@ export class ContextProvider extends Component {
       name: '',
       score: 0,
       error: false,
+      gameStarted: false,
       gameOver: false
     }
   }
@@ -22,6 +23,9 @@ export class ContextProvider extends Component {
   }
 
   startGame = () => {
+    if (this.state.gameStarted) return
+    this.setState({ gameStarted: true })
+
     clearInterval(gameInterval)
     gameInterval = setInterval(() => {
       this.setState(({ score }) => ({ score: score + 1 }))
@@ -30,10 +34,10 @@ export class ContextProvider extends Component {
 
   endGame = () => {
     clearInterval(gameInterval)
-    this.setState({ gameOver: true })
+    this.setState({ gameOver: true, gameStarted: false })
   }
 
-  onError = () => {
+  addTimeOnError = () => {
     clearTimeout(errorTimeout)
     this.setState(({ score }) => ({ score: score + 10, error: true }), () => {
       errorTimeout = setTimeout(() => {
@@ -43,7 +47,7 @@ export class ContextProvider extends Component {
   }
 
   resetGame = () => {
-    this.setState({ score: 0, gameOver: false })
+    this.setState({ score: 0, gameOver: false, gameStarted: false })
   }
 
   render () {
@@ -53,7 +57,7 @@ export class ContextProvider extends Component {
         setName: this.setName,
         resetGame: this.resetGame,
         startGame: this.startGame,
-        onError: this.onError,
+        addTimeOnError: this.addTimeOnError,
         endGame: this.endGame
       }}
       >

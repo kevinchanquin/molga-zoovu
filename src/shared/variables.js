@@ -1,3 +1,5 @@
+import { map } from 'lodash'
+
 export const breakpoints = {
   xs: '(min-width: 0px)',
   sm: '(min-width: 600px)',
@@ -17,6 +19,15 @@ export const colors = {
 }
 
 export const transition = (property, time) => {
+  if (Array.isArray(property)) {
+    return `
+      transition: ${map(property, (prop, index) => (
+        `${prop} ${Array.isArray(time) ? time[index] : time} cubic-bezier(0.19, 1, 0.22, 1)`
+      ))};
+      will-change: ${map(property, (prop, index) => `${prop}`)};
+    `
+  }
+
   return `
     transition: ${property} ${time} cubic-bezier(0.19, 1, 0.22, 1);
     will-change: ${property};
