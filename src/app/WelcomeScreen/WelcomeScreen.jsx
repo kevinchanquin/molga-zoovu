@@ -3,7 +3,7 @@ import { TextField, Typography, Button, Icon } from '../../components'
 import Context from '../../context'
 import styled from 'styled-components'
 
-const StContainer = styled.div`
+const StRoot = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,7 +23,7 @@ const StForm = styled.form`
 `
 
 const WelcomeScreen = () => {
-  const { user: { setName } } = useContext(Context)
+  const { setName } = useContext(Context)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -31,7 +31,7 @@ const WelcomeScreen = () => {
   }
 
   return (
-    <StContainer id='welcome-screen'>
+    <StRoot id='welcome-screen'>
       <StForm onSubmit={handleSubmit} autoComplete='off'>
         <Typography variant='h1'>Hello friend, tell me your name...</Typography>
         <StTextField
@@ -41,7 +41,7 @@ const WelcomeScreen = () => {
         />
         <Button>Lets go <Icon>arrow_right_alt</Icon></Button>
       </StForm>
-    </StContainer>
+    </StRoot>
   )
 }
 

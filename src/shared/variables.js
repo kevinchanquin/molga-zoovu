@@ -8,10 +8,12 @@ export const breakpoints = {
 
 export const colors = {
   primary: '#3B0078',
-  border: '#D6DCE7',
-  gray: '#9EA7B9',
+  secondary: '#00E5B1',
   dark: '#333333',
-  white: '#FFFFFF'
+  white: '#FFFFFF',
+  border: '#D6DCE7',
+  gray: '#97A1B5',
+  error: '#f44336'
 }
 
 export const transition = (property, time) => {

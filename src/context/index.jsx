@@ -7,7 +7,9 @@ export class ContextProvider extends Component {
     super(props)
 
     this.state = {
-      name: null
+      name: 'Di',
+      score: 0,
+      gameOver: false
     }
   }
 
@@ -18,7 +20,8 @@ export class ContextProvider extends Component {
   render () {
     return (
       <Context.Provider value={{
-        user: { name: this.state.name, setName: this.setName }
+        ...this.state,
+        setName: this.setName
       }}
       >
         {this.props.children}

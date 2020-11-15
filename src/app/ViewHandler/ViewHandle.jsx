@@ -5,9 +5,9 @@ import GameScreen from '../GameScreen'
 import WelcomeScreen from '../WelcomeScreen'
 
 const ViewHandler = () => {
-  const { user } = useContext(Context)
+  const { name } = useContext(Context)
 
-  if (!user.name) return <WelcomeScreen />
+  if (!name) return <WelcomeScreen />
   return <GameScreen />
 }
 
