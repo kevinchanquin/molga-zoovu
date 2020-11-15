@@ -1,5 +1,5 @@
 {
-  "name": "molga-zoovu",
+  "name": "molga",
   "version": "0.1.0",
   "private": true,
   "homepage": ".",
@@ -19,7 +19,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "cucumber-js --parallel 1",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -44,6 +44,9 @@
     ]
   },
   "devDependencies": {
-    "standard": "^16.0.2"
+    "cucumber": "^6.0.5",
+    "dotenv-flow": "^3.2.0",
+    "standard": "^16.0.2",
+    "testcafe": "^1.8.7"
   }
 }

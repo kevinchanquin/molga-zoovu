@@ -39,7 +39,7 @@ const WelcomeScreen = () => {
           placeholder='Your name here'
           required
         />
-        <Button>Lets go <Icon>arrow_right_alt</Icon></Button>
+        <Button data-role='submit'>Lets go <Icon>arrow_right_alt</Icon></Button>
       </StForm>
     </StRoot>
   )
