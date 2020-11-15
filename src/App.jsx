@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components'
 import { ContextProvider } from './context'
 
 import { colors } from './shared/variables'
-import ViewHandler from './app/ViewHandler/ViewHandle'
+import ScreenHandler from './app/ScreenHandler'
 
 import zoovuBg from './images/zoovu-bg.svg'
 import CamptonBold from './fonts/Campton-Bold.woff2'
@@ -81,7 +81,7 @@ function App () {
   return (
     <ContextProvider>
       <GlobalStyle />
-      <ViewHandler />
+      <ScreenHandler />
     </ContextProvider>
   )
 }

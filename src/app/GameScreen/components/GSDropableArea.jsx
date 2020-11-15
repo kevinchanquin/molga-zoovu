@@ -43,4 +43,4 @@ const GSDropableArea = () => {
   )
 }
 
-export default GSDropableArea
+export default React.memo(GSDropableArea)

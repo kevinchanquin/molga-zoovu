@@ -15,7 +15,7 @@ const StH2 = styled.h2`
   color: ${({ color }) => colors[color]};
   margin: 0;
   font-weight: 700;
-  font-size: 28px;
+  font-size: 24px;
   line-height: 34px;
   letter-spacing: 0.04em;
 `

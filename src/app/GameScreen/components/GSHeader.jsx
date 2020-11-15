@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
-import { breakpoints, colors } from '../../../shared/variables'
+import { breakpoints, colors, transition } from '../../../shared/variables'
 import { Icon, Typography } from '../../../components'
 import Context from '../../../context'
 import startCase from 'lodash/startCase'
@@ -44,9 +44,16 @@ const StRight = styled.span`
     }
   }
 `
-const STScore = styled.div`
+const STScoreContainer = styled.div`
   display: flex;
   align-items: center;
+`
+const StScore = styled.span`
+  ${transition('color', '3s')};
+  ${({ error }) => error && (`
+    ${transition('color', '0.2s')};
+    color: ${colors.error};
+  `)};
 `
 const StIcon = styled(Icon)`
   color: ${colors.secondary};
@@ -54,7 +61,7 @@ const StIcon = styled(Icon)`
 `
 
 const GSHeader = () => {
-  const { name, score } = useContext(Context)
+  const { name, score, error } = useContext(Context)
 
   return (
     <StRoot id='game-screen'>
@@ -63,14 +70,14 @@ const GSHeader = () => {
         <Typography color='gray'>Pick up the right cards</Typography>
       </StLeft>
       <StRight>
-        <STScore>
+        <STScoreContainer>
           <StIcon>schedule</StIcon>
           <Typography variant='h2' color='primary'>
-            Your score: {score} seconds
+            Your score: <StScore error={error}>{score}&nbsp;seconds</StScore>
           </Typography>
-        </STScore>
+        </STScoreContainer>
         <Typography variant='body2' color='gray'>
-          The faster teh better!
+          The faster the better!
         </Typography>
       </StRight>
     </StRoot>

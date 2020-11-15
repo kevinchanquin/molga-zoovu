@@ -12,7 +12,7 @@ const StButton = styled.button`
   font-weight: 700;
   font-size: 24px;
   letter-spacing: 0.01em;
-  padding: 0 20px 0 35px;
+  padding: 0 36px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,6 +30,7 @@ const StButton = styled.button`
   & .material-icons {
     font-size: 30px;
     margin-left: 8px;
+    margin-right: -16px;
   }
 `
 

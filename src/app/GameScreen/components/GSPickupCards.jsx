@@ -33,4 +33,4 @@ const GSCards = () => {
   )
 }
 
-export default GSCards
+export default React.memo(GSCards)
