@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { breakpoints, colors, transition } from '../../../shared/variables'
 import { Icon, Typography } from '../../../components'
 import Context from '../../../context'
-import { startCase } from 'lodash'
 
 const StRoot = styled.div`
   display: flex;
@@ -66,7 +65,7 @@ const GSHeader = () => {
   return (
     <StRoot id='game-screen'>
       <StLeft>
-        <Typography variant='h1'>Good luck, {startCase(name)}</Typography>
+        <Typography variant='h1'>Good luck, {name}</Typography>
         <Typography color='gray'>Pick up the right cards</Typography>
       </StLeft>
       <StRight>

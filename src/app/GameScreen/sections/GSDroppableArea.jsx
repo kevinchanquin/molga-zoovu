@@ -41,13 +41,14 @@ const GSDroppableArea = ({ data, handleDrop }) => {
     <StRoot>
       <Typography color='gray'>...and drop them here to make the logo great <StSpan>again!</StSpan></Typography>
       <StArea>
-        {map(data, ({ id, expected, dropped }) => (
+        {map(data, ({ id, expected, dropped }, index) => (
           <DropArea
             key={id}
             id={id}
             handleDrop={handleDrop}
             dropped={dropped}
             expected={expected}
+            index={index}
           >
             {dropped && (
               <LogoCard
@@ -55,6 +56,7 @@ const GSDroppableArea = ({ data, handleDrop }) => {
                 variant={dropped.variant}
                 hasError={expected !== dropped.variant}
                 source='droppableArea'
+                index={index}
               />
             )}
           </DropArea>

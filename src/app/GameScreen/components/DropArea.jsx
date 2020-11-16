@@ -28,6 +28,15 @@ const StArea = styled.div`
     left: -2px;
     width: calc(100% + 4px);
     height: calc(100% + 4px);
+    z-index: 2;
+    ${({ moveIndex }) => moveIndex && transition('transform', '0.6s')}
+    transform: ${({ moveIndex }) => moveIndex && (`
+      translateX(calc((100% + 16px) * ${moveIndex}))
+    `)};
+
+    @media ${breakpoints.md} {
+      transform: ${({ moveIndex }) => moveIndex && `translateX(calc((100% + 32px) * ${moveIndex}))`};
+    }
   }
 `
 
@@ -37,23 +46,24 @@ const DropArea = ({
   handleDrop,
   dropped,
   expected,
+  index,
   ...props
 }) => {
-  const [, drop] = useDrop({
+  const [{ isOverItem }, drop] = useDrop({
     accept: ItemTypes.CARD,
     drop: (item) => handleDrop({ id, expected, dropped }, item),
     canDrop: ({ source }, monitor) => (
       source === 'droppableArea' || (source === 'pickupArea' && !dropped)
     ),
     collect: (monitor) => ({
-      isOver: monitor.isOver()
+      isOverItem: monitor.isOver() ? monitor.getItem() : null
     })
   })
 
   return (
     <StArea
       ref={drop}
-      // hasChild={!!children}
+      moveIndex={!!isOverItem && ((index - isOverItem.index) * -1)}
       {...props}
     >
       {children}
@@ -74,4 +84,4 @@ DropArea.defaultProps = {
   handleDrop: () => {}
 }
 
-export default DropArea
+export default React.memo(DropArea)

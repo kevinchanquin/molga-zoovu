@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { useDrag } from 'react-dnd'
-import { breakpoints, colors, transition } from '../../../shared/variables'
+import { breakpoints, colors } from '../../../shared/variables'
 import { ItemTypes } from '../constants'
 
 import ImgZ from '../../../images/zoovu-z.svg'
@@ -29,7 +29,7 @@ const StCard = styled.div`
     border: 2px solid ${colors.error};
   `)};
   opacity: ${({ isDragging }) => isDragging ? 0 : 1};
-  ${transition('border-color', '0.5s')};
+  transition: ${({ isDragging }) => isDragging && 'none !important'};
 
   @media ${breakpoints.sm} {
     border-radius: 16px;
@@ -66,9 +66,9 @@ const StImg = styled.img`
   }
 `
 
-const LogoCard = ({ variant, id, hasError, onBegin, source, ...props }) => {
+const LogoCard = ({ variant, id, hasError, onBegin, source, index, ...props }) => {
   const [{ isDragging }, drag] = useDrag({
-    item: { type: ItemTypes.CARD, id, variant, source },
+    item: { type: ItemTypes.CARD, id, variant, source, index },
     begin: onBegin,
     collect: monitor => ({
       isDragging: monitor.isDragging()
