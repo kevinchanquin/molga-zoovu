@@ -44,8 +44,6 @@ const GameScreen = () => {
       if (area.id !== droppedArea.id) return area
       return { ...area, dropped: droppedCard }
     }))
-
-    // if (every(dropAreas, area => ))
   }, [pickupCards, dropAreas, addTimeOnError])
 
   // end game if every card is in place

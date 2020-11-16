@@ -73,7 +73,7 @@ Typography.propTypes = {
 
 Typography.defaultProps = {
   variant: 'body1',
-  color: undefined,
+  color: 'dark',
   component: undefined
 }
 

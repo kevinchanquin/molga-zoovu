@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.js": "./static/js/main.03ad2ae7.chunk.js",
+    "main.js.map": "./static/js/main.03ad2ae7.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.dc5e161a.js",
+    "runtime-main.js.map": "./static/js/runtime-main.dc5e161a.js.map",
+    "static/js/2.9af64458.chunk.js": "./static/js/2.9af64458.chunk.js",
+    "static/js/2.9af64458.chunk.js.map": "./static/js/2.9af64458.chunk.js.map",
+    "static/js/3.16889598.chunk.js": "./static/js/3.16889598.chunk.js",
+    "static/js/3.16889598.chunk.js.map": "./static/js/3.16889598.chunk.js.map",
+    "index.html": "./index.html",
+    "static/js/2.9af64458.chunk.js.LICENSE.txt": "./static/js/2.9af64458.chunk.js.LICENSE.txt",
+    "static/media/Campton-Bold.17818a32.woff2": "./static/media/Campton-Bold.17818a32.woff2",
+    "static/media/Campton-Light.be9ac4c8.woff2": "./static/media/Campton-Light.be9ac4c8.woff2",
+    "static/media/zoovu-bg.45feb868.svg": "./static/media/zoovu-bg.45feb868.svg",
+    "static/media/zoovu-o.7105c72a.svg": "./static/media/zoovu-o.7105c72a.svg",
+    "static/media/zoovu-u.ab636cad.svg": "./static/media/zoovu-u.ab636cad.svg",
+    "static/media/zoovu-v.82f0d0a7.svg": "./static/media/zoovu-v.82f0d0a7.svg",
+    "static/media/zoovu-z.045ec7e2.svg": "./static/media/zoovu-z.045ec7e2.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.dc5e161a.js",
+    "static/js/2.9af64458.chunk.js",
+    "static/js/main.03ad2ae7.chunk.js"
+  ]
+}

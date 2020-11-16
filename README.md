@@ -1,70 +1,108 @@
-# Getting Started with Create React App
+# Make our logo great again | A Zoovu Challenge
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Hey there! I'm Kevin Chanquín, hope you enjoy the game :)
 
-## Available Scripts
+## Get started
 
-In the project directory, you can run:
+### How to play
 
-### `yarn start`
+Go to `game` and open `i-want-to-play-a-game.html` in your prefered browser.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Run the app in development mode
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+In the project directory, run:
 
-### `yarn test`
+`yarn install`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+and then:
 
-### `yarn build`
+`yarn start`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Run the tests
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Make sure the app is running:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+`yarn start`
 
-### `yarn eject`
+and then, run:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+`yarn test`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Technical solution
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+This game was developed with React.js, using Context to handle the base logic of the game. See: `src/context/index.jsx`.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+The game view is divided into 3 screens: The `WellcomeScreen`, the `GameScreen` and the `ResultScreen`. All managed by a simple handler component:
 
-## Learn More
+```jsx
+const ScreenHandler = () => {
+  const { name, gameOver } = useContext(Context)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+  if (!name) return <WelcomeScreen />
+  if (gameOver) return <ResultScreen />
+  return <GameScreen />
+}
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### The looks
 
-### Code Splitting
+In order to make the fancy looks of game I used `styled-components`, this library is perfect to give elements a diferent style based on props.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+I alos made some rehusable components: Button, Typograhpy, Textfield and Icon, both to demostrate the use of styled-components and prop-types. See: `src/components`.
 
-### Analyzing the Bundle Size
+E.g.
+```jsx
+const StH1 = styled.h1`
+  color: ${({ color }) => colors[color]};
+  margin: 0;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 34px;
+  letter-spacing: 0.01em;
+`
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### The gameplay
 
-### Making a Progressive Web App
+The brains behind the drag and drop is `react-dnd` and it's `html-5-backend` which uses the HTML5 drag and drop API, and allows you to keep your components decoupled.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+You can see my implementation of it in `src/app/GameScreen/components/DropArea.jsx` and `src/app/GameScreen/components/LogoCard.jsx`.
 
-### Advanced Configuration
+E.g.
+```jsx
+const [{ isOverItem }, drop] = useDrop({
+  accept: ItemTypes.CARD,
+  drop: (item) => handleDrop({ id, expected, dropped }, item),
+  canDrop: ({ source }, monitor) => (
+    source === 'droppableArea' || (source === 'pickupArea' && !dropped)
+  ),
+  collect: (monitor) => ({
+    isOverItem: monitor.isOver() ? monitor.getItem() : null
+  })
+})
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+In addition to that, most of what happens when a card is dragged is handled in `GameScreen.jsx`, using `lodash` to map the arrays of cards and drop areas, aswell as using some hooks the handle the callbacks and state updates.
 
-### Deployment
+### The testing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+In order to make sure there's no pesky bugs in this fancy game I implemented some End-to-End testing, using `cucumber.js` and `TestCafe`. It runs some basic scenarios like making sure the game starts after submitting a name, time increases when placing a card in the wrong spot, etc.
 
-### `yarn build` fails to minify
+Check them at: `features/scenarios/Game.feature` and `features/step_definitions/game.js`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+E.g.
+```feature
+Scenario: The time should stop when all the cards have been placed in the correct order
+  Given the user is on the game view
+  When the user places all the cards in the correct order
+  Then a message with the result should be rendered
+  And after 10 seconds, the game should restart
+```
+
+### TL;DR
+
+- `Context` for state management
+- `styled-components` for styles
+- `react-dnd` for drag and drop
+- `cucumber.js` for test definitions
+- `TestCafe` for E2E testing
