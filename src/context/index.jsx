@@ -10,7 +10,7 @@ export class ContextProvider extends Component {
     super(props)
 
     this.state = {
-      name: 'Di',
+      name: '',
       score: 0,
       error: false,
       gameStarted: false,

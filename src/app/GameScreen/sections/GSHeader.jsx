@@ -72,7 +72,7 @@ const GSHeader = () => {
         <STScoreContainer>
           <StIcon>schedule</StIcon>
           <Typography variant='h2' color='primary'>
-            Your score: <StScore error={error}>{score}&nbsp;seconds</StScore>
+            Your score: <StScore error={error} data-score={score}>{score}&nbsp;seconds</StScore>
           </Typography>
         </STScoreContainer>
         <Typography variant='body2' color='gray'>

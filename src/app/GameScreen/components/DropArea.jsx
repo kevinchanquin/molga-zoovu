@@ -64,6 +64,7 @@ const DropArea = ({
     <StArea
       ref={drop}
       moveIndex={!!isOverItem && ((index - isOverItem.index) * -1)}
+      data-role='drop-area'
       {...props}
     >
       {children}
