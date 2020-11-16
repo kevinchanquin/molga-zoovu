@@ -1,7 +1,7 @@
 /* global testController */
 const { Given, When, Then } = require('cucumber')
 
-const wellcomeScreen = require('../support/pages/WelcomeScreen')
+const welcomeScreen = require('../support/pages/WelcomeScreen')
 const gameScreen = require('../support/pages/GameScreen')
 
 // Scenario 1
@@ -13,12 +13,12 @@ Given('the user opens the game', async () => {
 
 When('the user puts their name in', async () => {
   await testController
-    .click(wellcomeScreen.nameField())
+    .click(welcomeScreen.nameField())
     .typeText(
-      wellcomeScreen.nameField(),
+      welcomeScreen.nameField(),
       'Player 1'
     )
-    .click(wellcomeScreen.submitButton())
+    .click(welcomeScreen.submitButton())
 })
 
 Then('the user goes to the game view', async () => {
@@ -32,12 +32,12 @@ Then('the user goes to the game view', async () => {
 Given('the user is on the game view', async () => {
   await testController
     .navigateTo('http://localhost:3000')
-    .click(wellcomeScreen.nameField())
+    .click(welcomeScreen.nameField())
     .typeText(
-      wellcomeScreen.nameField(),
+      welcomeScreen.nameField(),
       'Player 1'
     )
-    .click(wellcomeScreen.submitButton())
+    .click(welcomeScreen.submitButton())
 })
 
 When('the user drops the card to the incorrect slot', async () => {

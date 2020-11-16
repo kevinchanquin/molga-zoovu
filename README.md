@@ -32,7 +32,7 @@ and then, run:
 
 This game was developed with React.js, using Context to handle the base logic of the game. See: `src/context/index.jsx`.
 
-The game view is divided into 3 screens: The `WellcomeScreen`, the `GameScreen` and the `ResultScreen`. All managed by a simple handler component:
+The game view is divided into 3 screens: The `WelcomeScreen`, the `GameScreen` and the `ResultScreen`. All managed by a simple handler component:
 
 ```jsx
 const ScreenHandler = () => {
@@ -46,9 +46,9 @@ const ScreenHandler = () => {
 
 ### The looks
 
-In order to make the fancy looks of game I used `styled-components`, this library is perfect to give elements a diferent style based on props.
+In order to make the fancy looks of the game I used `styled-components`, this library is perfect to give elements a different style based on props.
 
-I alos made some rehusable components: Button, Typograhpy, Textfield and Icon, both to demostrate the use of styled-components and prop-types. See: `src/components`.
+I also made some reusable components: Button, Typography, Textfield and Icon, both to demonstrate the use of styled-components and prop-types. See: `src/components`.
 
 E.g.
 ```jsx
@@ -82,7 +82,7 @@ const [{ isOverItem }, drop] = useDrop({
 })
 ```
 
-In addition to that, most of what happens when a card is dragged is handled in `GameScreen.jsx`, using `lodash` to map the arrays of cards and drop areas, aswell as using some hooks the handle the callbacks and state updates.
+In addition to that, most of what happens when a card is dragged is handled in `GameScreen.jsx`, using `lodash` to map the arrays of cards and drop areas, as well as using some hooks to handle the callbacks and state updates.
 
 ### The testing
 
